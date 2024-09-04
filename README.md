@@ -6,13 +6,13 @@ If you decide to use this code, please cite the following publication:
 
 
 # Required Python packages:
-    NumPy (1.24.3)
-    Tensorflow (2.10.1)
-    SciPy (1.10.1)
-    matplotlib (3.7.2)
-    json (2.0.9),
-    tifffile (2023.4.12)
-    PIL (10.0.1)
+- NumPy (1.24.3)
+- Tensorflow (2.10.1)
+- SciPy (1.10.1)
+- matplotlib (3.7.2)
+- json (2.0.9),
+- tifffile (2023.4.12)
+- PIL (10.0.1)
 
 # How to use:
 The main script is "reco.py" and can be either executed either directly from a shell with given arguments (in this case the section overwriting p must be commented), or within a Python IDE by changing the dictionary p.
