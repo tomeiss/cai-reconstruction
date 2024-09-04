@@ -43,6 +43,8 @@ Reconstruction results from 3D-MLEM (source hardly visible inside the red circle
 ## Details
 The main script is "reco.py" and can be either executed either directly from a shell with given arguments (in this case the section overwriting ```p``` must be commented), or within a Python IDE by changing the dictionary ```p```. The parameter describing the camera setup (detector size, pixelation, mask size, mask-to-detector distance, mask pattern, pinhole size, ...) can be set via the arguments and the mask pattern must be given via tiff file that describes the binary mask pattern. Currently, deriving the MURA Decoding pattern from the given mask pattern works only for the pattern used on the publication mentioned above. More about deriving the decoding pattern can be found in [Cieslak et al.](https://doi.org/10.1016/j.radmeas.2016.08.002).
 
+Input files can be either in ```*.npy``` or in ```*.tiff``` format. Output files are in tiff format for further processing plus overview images of all slices in png. Our implementation contains a preprocessing step, which can be turned off or on by changing ```p[preprocessing]```.
+
 ## Datasets
 As part of other publications, we have made two datasets available to the research community to ease the access to CAI. One dataset can be found [here](https://github.com/tomeiss/assessment_of_axial_resolution_in_CAI) and the other one [here](https://github.com/tomeiss/3d_localization_with_cai).
 Synthetic coded aperture images can be simulated via the convolutional model, which we implemented with [*ConvSim*](https://github.com/tomeiss/convsim) where a describtion can be found under [Meißner et al.](https://doi.org/10.1117/12.2670883).
