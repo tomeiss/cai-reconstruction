@@ -10,7 +10,7 @@ If you decide to use this code, please cite the following publication:
 - Tensorflow (2.10.1)
 - SciPy (1.10.1)
 - matplotlib (3.7.2)
-- json (2.0.9),
+- json (2.0.9)
 - tifffile (2023.4.12)
 - PIL (10.0.1)
 
