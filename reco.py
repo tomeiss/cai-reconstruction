@@ -290,7 +290,7 @@ def main(p):
 
             # Save summed forward projections:
             base_name = this_f.split("/")[-1]
-            base_name = "./reconstruction/" + base_name[0:base_name.rfind(".")]
+            base_name = "./reconstructions/" + base_name[0:base_name.rfind(".")]
             new_name = base_name + "_3D-MLEM_forward_i%02i_Sl%02i.png" % (p.mlem_iters, len(p.dist))
             plot(mlem_reco.forward_pros.sum(2), new_name.split("/")[-1], filename=new_name, dpi=500).clf()
             tifffile.imwrite(new_name.replace("png", "tif"), mlem_reco.forward_pros.sum(2))
@@ -331,7 +331,7 @@ def main(p):
         # Convert central mask pattern to decoding patter:
         central_decod = convert_mask_to_decoding_pattern(Mask.mask_array)
 
-        tifffile.imwrite("./reconstruction/mura_decoding_pattern_used.tif", central_decod.astype(np.float32))
+        tifffile.imwrite("./reconstructions/mura_decoding_pattern_used.tif", central_decod.astype(np.float32))
         for img_i in range(len(imgs_in)):
             this_img = imgs_in[img_i]
             this_f = fs[img_i].replace("\\", "/")
@@ -370,7 +370,7 @@ def main(p):
                 if p.save_each_img:
                     # Write out tif file:
                     base_name = this_f.split("/")[-1]
-                    base_name = "./reconstruction/" + base_name[0:base_name.rfind(".")]
+                    base_name = "./reconstructions/" + base_name[0:base_name.rfind(".")]
                     new_name = base_name + "_MURADecoded_d%06.2f.tif" % d
                     tifffile.imwrite(new_name, r_tobi)
 
@@ -378,7 +378,7 @@ def main(p):
 
             # Save all reconstructed slices in a single plot:
             base_name = this_f.split("/")[-1]
-            base_name = "./reconstruction/" + base_name[0:base_name.rfind(".")]
+            base_name = "./reconstructions/" + base_name[0:base_name.rfind(".")]
             new_name = base_name + "_MURADecoded_all_recos_Sl%02i.png" % len(p.dist)
             plot_all_slices(all_recos, p.dist.astype(str), imgs_axis=0,
                             suptitle=new_name.split("/")[-1]).savefig(new_name, dpi=500)
@@ -392,7 +392,7 @@ def main(p):
         print("You chose Accorsi Decoding")
 
         central_decod = convert_mask_to_decoding_pattern(Mask.mask_array)
-        tifffile.imwrite("./reconstruction/accorsi_decoding_pattern_used.tif", central_decod.astype(np.float32))
+        tifffile.imwrite("./reconstructions/accorsi_decoding_pattern_used.tif", central_decod.astype(np.float32))
 
         for img_i in range(len(imgs_in)):
             this_img = imgs_in[img_i]
@@ -452,13 +452,13 @@ def main(p):
                 if p.save_each_img:
                     # Write out tif file:
                     base_name = this_f.split("/")[-1]
-                    base_name = "./reconstruction/" + base_name[0:base_name.rfind(".")]
+                    base_name = "./reconstructions/" + base_name[0:base_name.rfind(".")]
                     new_name = base_name + "_AccorsiDecoded_d%06.2f.tif" % d
                     tifffile.imwrite(new_name, r_acc)
 
             # Save all reconstructed slices in a single plot:
             base_name = this_f.split("/")[-1]
-            base_name = "./reconstruction/" + base_name[0:base_name.rfind(".")]
+            base_name = "./reconstructions/" + base_name[0:base_name.rfind(".")]
             new_name = base_name + "_AccorsiDecoded_all_recos_Sl%02i.png" % len(p.dist)
             plot_all_slices(all_recos, p.dist.astype(str), imgs_axis=0,
                             suptitle=new_name.split("/")[-1]).savefig(new_name, dpi=500)
