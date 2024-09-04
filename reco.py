@@ -55,8 +55,8 @@ def defineParser():
                         default="",
                         help='Files to reconstruct, either a REGEX string or a single file. Files must be in either '
                              'npy or tiff format.')
-    parser.add_argument('--preprocess', type=str2bool, required=True,
-                        default="False",
+    parser.add_argument('--preprocess', type=str2bool, required=False,
+                        default=False,
                         help='If detector images should be preprocessed before reconstruction or not. Preprocessing '
                              'contains outlier rejection based on the 1st and 99th percentile and '
                              'replacement with the 3x3 median value, plus Gaussian smoothing with sigma=1px.')
@@ -77,18 +77,18 @@ def defineParser():
     parser.add_argument('--rot180', type=str2bool, nargs='?', default=False,
                         help='Rotate output by 180 degree or not.')
     # Detector:
-    parser.add_argument('--hd', type=float, default=24.64, help='Side length of detector in mm.')
-    parser.add_argument('--pixels', type=int, default=448, help='Amount of pixels of the detector.')
+    parser.add_argument('--hd', type=float, default=14.08, help='Side length of detector in mm.')
+    parser.add_argument('--pixels', type=int, default=256, help='Amount of pixels of the detector.')
     # Mask:
     parser.add_argument('--hm', type=float, default=9.92, help='Side length of mask in mm.')
     parser.add_argument('--r', type=float, default=0.08 / 2.0, help='Pinhole RADIUS in mm.')
     parser.add_argument('--t', type=float, default=0.11, help='Mask thickness in mm.')
-    parser.add_argument('--mask_file', type=str, required=True,
+    parser.add_argument('--mask_file', type=str, required=False,
                         default="./mask_pattern.tif",
                         help='Path and TIFF file that contains the entire mask patter, i.e. the entire 2x2 arrangement if used. '
                              'Must be binary, where 1 represents an opening and 0 opaque material.')
     # Geometry:
-    parser.add_argument('--b', type=float, default=22, help='Detector-to-mask-distance in mm.')
+    parser.add_argument('--b', type=float, default=20, help='Detector-to-mask-distance in mm.')
     global_args = parser.parse_args()
     return global_args
 
@@ -471,6 +471,9 @@ if __name__ == "__main__":
     gpus = tf.config.experimental.list_physical_devices('GPU')
     [tf.config.experimental.set_memory_growth(g, True) for g in gpus]
 
+    p = defineParser()
+
+    # If you want to use this script via a shell, don't let p be overwritten here:
     p = dict()
     # Chose input files and if preprocessing should be carried out or not
     p["files"] = "./x00y00z50_Minipix_MC_Am241_1mm_MM_1B_001.tif"
