@@ -5,9 +5,9 @@
 
 Coded Aperture Imaging (CAI) promises a better trade-off between sensitivity and spatial resolution in imaging of gamma sources. However, it requires image reconstruction to obtain an interpretable image.
 This repository contains two commonly used reconstruction for CAI: MURA Decoding and convolutional 3D Maximum Likelihood Expectation Maximization (3D-MLEM) algorithm, an extended version based on the original algorithm from [Mu et al](https://ieeexplore.ieee.org/document/1637528). Both can be used for planar reconstruction and 3D reconstruction.
-Additionally to MURA Decoding, a method called "Accorsi Decoding" is implemented as well. It corresponds tightly to the implementation from [Roberto Accorsi's dissertation](http://hdl.handle.net/1721.1/8684) and is added here for the sake of completeness. Compared to MURA Decoding, it somtimes yields slightly better results, but is generally less robust to noisy detector images.
+Additionally to MURA Decoding, a method called "Accorsi Decoding" is implemented as well. It corresponds tightly to the implementation from [Roberto Accorsi's dissertation](http://hdl.handle.net/1721.1/8684) and is added here for the sake of completeness. Compared to MURA Decoding, it sometimes yields slightly better results, but is generally less robust to noisy detector images.
 
-If you decide to use these implementation, please cite the following publication:
+If you decide to use this implementation, please cite the following publication:
 
 *Meißner, T., Cerbone, L. A., Russo, P., Nahm, W., & Hesser, J. (2024). 3D-localization of single point-like gamma sources with a coded aperture camera. Physics in Medicine & Biology, 69(16), 165004, https://doi.org/10.1088/1361-6560/ad6370*
 
@@ -41,9 +41,9 @@ Reconstruction results from 3D-MLEM (source hardly visible inside the red circle
 
 
 ## Details
-The main script is "reco.py" and can be either executed either directly from a shell with given arguments (in this case the section overwriting ```p``` must be commented), or within a Python IDE by changing the dictionary ```p```. The parameter describing the camera setup (detector size, pixelation, mask size, mask-to-detector distance, mask pattern, pinhole size, ...) can be set via the arguments and the mask pattern must be given via tiff file that describes the binary mask pattern. Currently, deriving the MURA Decoding pattern from the given mask pattern works only for the pattern used on the publication mentioned above. More about deriving the decoding pattern can be found in [Cieslak et al.](https://doi.org/10.1016/j.radmeas.2016.08.002).
+The main script is "reco.py" and can be either executed either directly from a shell with given arguments (in this case the section overwriting ```p``` must be commented), or within a Python IDE by changing the dictionary ```p```. The parameter describing the camera setup (detector size, pixelation, mask size, mask-to-detector distance, mask pattern, pinhole size, ...) can be set via the arguments and the mask pattern must be given via tiff file that describes the binary mask pattern. Currently, deriving the MURA Decoding pattern from the given mask pattern works only for the pattern used in the publication mentioned above. More about deriving the decoding pattern can be found in [Cieslak et al.](https://doi.org/10.1016/j.radmeas.2016.08.002).
 
-Input files can be either in ```*.npy``` or in ```*.tiff``` format. Output files are in tiff format for further processing plus overview images of all slices in png. Our implementation contains a preprocessing step, which can be turned off or on by changing ```p[preprocessing]```.
+Input files can be either in ```*.npy``` or in ```*.tiff``` format. Output files are in ```*.tiff``` format for further processing plus overview images of all slices as PNGs. Our implementation contains a preprocessing step, which can be turned off or on by changing ```p[preprocessing]```.
 
 ## Datasets
 As part of other publications, we have made two datasets available to the research community to ease the access to CAI. One dataset can be found [here](https://github.com/tomeiss/assessment_of_axial_resolution_in_CAI) and the other one [here](https://github.com/tomeiss/3d_localization_with_cai).
